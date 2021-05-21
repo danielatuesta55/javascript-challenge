@@ -22,6 +22,7 @@ function handleClick() {
     // Grab the datetime value from the filter
 
 
+
     // grab all the table data and set to filteredData
 
     // Check to see if a date was entered and filter the
