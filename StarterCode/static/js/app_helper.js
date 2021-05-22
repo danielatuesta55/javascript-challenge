@@ -41,10 +41,9 @@ function handleClick() {
 }
 
 // Attach an event to listen for the form button that calls handleClick on a click of the filter button
-button.on("click", function() {
-    console.log("A button was clicked!");
-    console.log(d3.event.target);
-});
+d3.select("#filter-btn").on("click", handleClick);
+
+
 
 // Build the table when the page loads
 buildTable(tableData);
