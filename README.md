@@ -15,12 +15,13 @@ In this repository, the reader will encounter my solution to the homework assign
 I hope you find my work not only to be complete but to display all the knowledge learned throughout this portion of the Data Science Bootcamp at Northwestern University.
 
 1. **Images**: Inside this folder you will find the images for the instructions provided by the institution. *You can skip this folder if you want*.
-2. **StartedCode**: Inside this folder, you will have the chance to access my code for the assignment. I encourage you to take a look inside as you will find the solution to the project. Here are what's inside:
+2. **Level_1**: Inside this folder, you will have the chance to access my code for the assignment. I encourage you to take a look inside as you will find the solution to the project. Here are what's inside:
 
 * *static*: You will find my CSS style sheet, app.js (code for java to run) and images that I created and or used for my page.
 * *index.html*: This is the index.html file to run my webpage. 
-
-1. **README.md**: it's the current file you are reading. I strongly suggest navigating through it and look at the project's objective solution.
+3. **Level_2**: Inside this folder you will find the solution to the second level challange for the project. The idea was to be able to have several filters working. 
+   
+4. **README.md**: it's the current file you are reading. I strongly suggest navigating through it and look at the project's objective solution.
 
 I hope you find my work not only to be complete but to display all the knowledge learned throughout this portion of the Data Science Bootcamp at Northwestern University.
 - - -
