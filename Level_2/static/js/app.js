@@ -36,53 +36,120 @@ function handleClick(data) {
     // to the html file is #datetime, #cityname #statename #shapename. Console log values
     let dateElement = d3.select("#datetime");
     let inputDateValue = dateElement.property("value");
-    console.log(inputDateValue);
+
 
     let cityElement = d3.select("#cityname");
     let inputCityValue = cityElement.property("value");
-    console.log(inputCityValue);
+
 
     let stateElement = d3.select("#statename");
     let inputStateValue = stateElement.property("value");
-    console.log(inputStateValue);
+
 
     let shapeElement = d3.select("#shapename");
     let inputShapeValue = shapeElement.property("value");
-    console.log(inputShapeValue);
-
 
 
     // Step 4.3: Console log the input value to double check.
-    console.log(inputValue);
+    console.log(inputDateValue);
+    console.log(inputCityValue);
+    console.log(inputStateValue);
+    console.log(inputShapeValue);
 
-    // Step 4.4: Create filter data according to user input value
-    let filteredData = tableData.filter(data => data.datetime === inputDateValue);
-    // Step 4.5 Create a new varible with the array of datas to use in the if statement
+    // Step 5 Create an empty array as filtered data
+
+    let filteredData = [];
+
+    //Step 6: usin map function create new arrays to check if input values are within those parameters
+
     let dates = tableData.map(tableData => tableData.datetime);
-    console.log(dates);
-    // Step 4.6: Creat conditional statement usin If
+    let cities = tableData.map(tableData => tableData.cityname);
+    let states = tableData.map(tableData => tableData.statename);
+    let shapes = tableData.map(tableData => tableData.shapename);
+
+    //Step 7: Create a conditional statment and nested conditional statements using if
+    // to filter the data allowing the user to interact with page (table)
+
     if (dates.includes(inputDateValue)) {
-        console.log("The input value = table value");
-        tbody.html("");
-    } else if (inputDateValue === "") {
-        tbody.html("");
-        filteredData = tableData;
-        console.log(tableData);
+        if (cities.includes(inputCityValue)) {
+            if (states.includes(inputStateValue)) {
+                if (countries.includes(inputCountryValue)) {
+                    if (shapes.includes(inputShapeValue)) {
+                        //Step 7.1: cleare data 
+                        tbody.html("");
+                        //Step 7.2 Created filter data to display to users
+                        filteredData = tableData.filter(f => f.datetime === inputDateValue && f.city === inputCityValue && f.state === inputStateValue && f.country === inputCountryValue && f.shape === inputShapeValue);
+                        //Step 7.3 console log filtered data
+                        console.log(filteredData);
+                        // Step 7.4 Create else if statement for shape if it dosent have a user input
+                    } else if (inputShapeValue === "") {
+                        // Step 7.5 : cleare data 
+                        tbody.html("");
+                        // Step 7.6: create new filter data array to feed builTable function 
+                        filteredData = tableData.filter(f => f.datetime === inputDateValue && f.city === inputCityValue && f.state === inputStateValue && f.country === inputCountryValue);
+                        // Step 7.7: console log the new filtered data
+                        console.log(filteredData);
+                    } else if (!shape.includes(inputShapeValue)) {
+                        //Step 7.8: cleare data 
+                        tbody.html("");
+                        // Step 7.9: create new window alert to tell the user shape dosent exist
+                        alert("That is not a valid shape. Please try again");
+                        // Step 7.10: Console log error message
+                        console.log("The shape selected by user dosent exist");
+                    }
+                    // Step 7.11 next conditiopnal for countries input by user
+                } else if (inputCountryValue === "") {
+                    if (shapes.includes(inputShapeValue)) {
+                        //Step 7.12 : cleare data 
+                        tbody.html("");
+                        // Step 7.13: create a new filtered data array
+                        filteredData = tableData.filter(f => f.datetime === inputDateValue && f.city === inputCityValue && f.state === inputStateValue && f.shape === inputShapeValue);
+                        // Step 7.14: console log the new filtered data
+                        console.log(filteredData);
+                    } else if (inputShapeValue === "") {
+                        //Step 7.15 : cleare data 
+                        tbody.html("");
+                        // Step 7.16: create a new filtered data array
+                        filteredData = tableData.filter(f => f.datetime === inputDateValue && f.city === inputCityValue && f.state === inputStateValue);
+                        // Step 7.17: console log the new filtered data
+                        console.log(filteredData);
+                    } else if (!shapes.includes(inputShapeValue)) {
+                        //Step 7.18: cleare data 
+                        tbody.html("");
+                        // Step 7.19: create new window alert to tell the user shape dosent exist
+                        alert("That is not a valid shape. Please try again");
+                        // Step 7.20: Console log error message
+                        console.log("The shape selected by user dosent exist");
+                    }
+                } else if (!countries.includes(inputCountryValue)) {
+                    //Step 7.21: cleare data 
+                    tbody.html("");
+                    // Step 7.22: create new window alert to tell the user shape dosent exist
+                    alert("That is not a country. Please try again");
+                    // Step 7.23: Console log error message
+                    console.log("The country selected by user dosent exist");
+                } else if (inputStateValue === "") {
+                    if (countries.includes(inputCountryValue)) {
+                        if (shapes.includes(inputShapeValue)) {
+                            //Step 7.24 : cleare data 
+                            tbody.html("");
+                            // Step 7.25: create a new filtered data array
+                            filteredData = tableData.filter(f => f.datetime === inputDateValue && f.city === inputCityValue && f.country === inputCountryValue && f.shape === inputShapeValue);
+                            // Step 7.26: console log the new filtered data
+                            console.log(filteredData);
+                        }
 
-    } else if (!dates.includes(inputDateValue)) {
-        tbody.html("");
-        console.log(" Data Dosent exits error");
-        alert("The date you chose isnt valid. Please try again and pick a date bewteen 1/1/2010 and 1/13/2010");
-        filteredData = tableData;
-        buildTable(tableData);
-    }
-    buildTable(filteredData);
-};
+
+                    }
+                }
+            }
+        }
+    };
 
 
-// Step 5: Create a listner for the button.
-d3.select("#filter-btn").on("click", handleClick);
+    // Step 5: Create a listner for the button.
+    d3.select("#filter-btn").on("click", handleClick);
 
 
-// Step 6: Make the function buildTable run again with original data.
-buildTable(tableData);
+    // Step 6: Make the function buildTable run again with original data.
+    buildTable(tableData);
